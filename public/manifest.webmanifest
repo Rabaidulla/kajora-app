@@ -1,0 +1,12 @@
+{
+  "name": "Kajora",
+  "short_name": "Kajora",
+  "description": "Your Home. Our Team.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8FAFC",
+  "theme_color": "#0B1F3A",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
