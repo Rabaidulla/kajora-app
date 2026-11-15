@@ -80,9 +80,60 @@ export const services: Service[] = [
 
 export const activeServices = services.filter((s) => s.active)
 
+
 export const areas: L[] = [
-  { bn: 'বারুইপুর', en: 'Baruipur' },
-  { bn: 'সোনারপুর', en: 'Sonarpur' },
-  { bn: 'জয়নগর', en: 'Jaynagar' },
-  { bn: 'আশেপাশের এলাকা', en: 'Nearby areas' },
-]
+  {
+      bn: 'কলকাতা (সমস্ত এলাকা)',
+          en: 'Kolkata (All Areas)'
+            },
+              {
+                  bn: 'বারুইপুর',
+                      en: 'Baruipur'
+                        },
+                          {
+                              bn: 'সোনারপুর',
+                                  en: 'Sonarpur'
+                                    },
+                                      {
+                                          bn: 'জয়নগর',
+                                              en: 'Jaynagar'
+                                                },
+                                                  {
+                                                      bn: 'দক্ষিণ ২৪ পরগনার অন্যান্য এলাকা',
+                                                          en: 'Other Areas of South 24 Parganas'
+                                                            },
+                                                              {
+                                                                  bn: 'অন্যান্য কাছের এলাকা',
+                                                                      en: 'Other Nearby Areas'
+                                                                        }
+                                                                        ];
+
+                                                                        
+import { supabase } from '../lib/supabase'
+
+export async function fetchKajoraServices(): Promise<Service[]> {
+  const { data, error } = await supabase
+    .from('services')
+    .select('*')
+    .order('display_order', { ascending: true })
+
+  if (error) {
+    console.error('Kajora services error:', error.message)
+    throw error
+  }
+
+  return (data ?? []).map((row: any) => ({
+    slug: row.slug,
+    icon: row.icon_url || row.icon || '',
+    name: {
+      bn: row.name_bn || '',
+      en: row.name_en || ''
+    },
+    desc: {
+      bn: row.description_bn || '',
+      en: row.description_en || ''
+    },
+    covers: row.covers || (row.cover_url ? [row.cover_url] : []),
+    active: row.active ?? row.is_active ?? row.status === 'active'
+  }))
+}
