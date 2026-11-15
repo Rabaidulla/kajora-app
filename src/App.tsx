@@ -1,3 +1,4 @@
+import Admin from './pages/Admin'
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
@@ -27,7 +28,8 @@ export default function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/privacy" element={<Legal kind="privacy" />} />
+        <Route path="/admin" element={<Admin />} />
+      <Route path="/privacy" element={<Legal kind="privacy" />} />
         <Route path="/terms" element={<Legal kind="terms" />} />
         <Route path="*" element={<section className="section wrap"><h1 className="page-h">{t('notFound')}</h1></section>} />
       </Route>

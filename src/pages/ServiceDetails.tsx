@@ -1,9 +1,12 @@
 import { Link, useParams } from 'react-router-dom'
 import { useLang } from '../i18n'
-import { services } from '../data/services'
+import { useServices } from '../hooks/useServices'
 import ContactButtons from '../components/ContactButtons'
 
 export default function ServiceDetails() {
+  const { services, loading, error } = useServices()
+  if (loading) return <p>Loading service...</p>
+  if (error) return <p>Service could not be loaded.</p>
   const { slug } = useParams()
   const { t, pick } = useLang()
   const s = services.find((x) => x.slug === slug && x.active)

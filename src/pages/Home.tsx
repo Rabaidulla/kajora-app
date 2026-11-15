@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useLang } from '../i18n'
-import { activeServices, areas } from '../data/services'
+import { areas } from '../data/services'
+import { useServices } from '../hooks/useServices'
 import ServiceCard from '../components/ServiceCard'
 import ContactButtons from '../components/ContactButtons'
 
 export default function Home() {
+  const { services: activeServices } = useServices()
   const { t, pick } = useLang()
   const why = [['why1t', 'why1d'], ['why2t', 'why2d'], ['why3t', 'why3d']]
   return (
