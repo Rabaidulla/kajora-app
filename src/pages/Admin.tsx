@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
+import { BannerManagement } from '../components/BannerManagement'
 
 export default function Admin() {
   const [email, setEmail] = useState('')
@@ -217,7 +218,8 @@ export default function Admin() {
 
       <p>{message}</p>
 
-      <h2>All Services ({items.length})</h2>
+      <BannerManagement />
+        <h2>All Services ({items.length})</h2>
 
       {items.map(item => (
         <article key={item.id} className="admin-service">
