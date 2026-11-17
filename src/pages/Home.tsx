@@ -4,6 +4,7 @@ import { areas } from '../data/services'
 import { useServices } from '../hooks/useServices'
 import ServiceCard from '../components/ServiceCard'
 import ContactButtons from '../components/ContactButtons'
+import HomepageBanner from '../components/HomepageBanner'
 
 export default function Home() {
   const { services: activeServices } = useServices()
@@ -11,6 +12,7 @@ export default function Home() {
   const why = [['why1t', 'why1d'], ['why2t', 'why2d'], ['why3t', 'why3d']]
   return (
     <>
+        <HomepageBanner />
       <section className="hero">
         <div className="wrap hero-in">
           <h1>{t('tagline')}</h1>
